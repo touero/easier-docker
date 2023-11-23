@@ -23,7 +23,7 @@ A python package that makes it easier for you to use local docker.
 ## Install
 
 ```shell
-pip install easier_docker
+pip install easier-docker
 ```
 
 ## Usage
