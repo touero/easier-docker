@@ -10,7 +10,8 @@
 
 ## Repository Introduction
 
-A python package that makes it easier for you to use local docker. 
+It can create a container based on the local image. If the image does not exist, the image will be pulled down. 
+If the container exists, it will be started directly. Then execute any service you want to execute in the container.
 
 💕 If it's helpful to you or cloning it, please star it. This is maximum encouragement for open-source contributors💕
 
