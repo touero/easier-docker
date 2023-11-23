@@ -13,7 +13,7 @@ if __name__ == '__main__':
         },
         'detach': True,
         'command': ["sh", "-c", f'cd {container_script} &&'
-                                'python test_in_docker.py'],
+                                'python docker_example.py'],
     }
     easier_docker = EasierDocker(config)
     easier_docker.start()
