@@ -1,22 +1,16 @@
-<h1 align="center">easier_docker</h1>
-<!---
+<h1 align="center">easier-docker</h1>
+
 <p align="center">
   <a href="https://www.python.org/" ><img src="https://img.shields.io/badge/python_-%3E%3D3.8-blue" alt=""></a> 
-  <a href="https://www.gnu.org/licenses/gpl-3.0.html" ><img src="https://img.shields.io/badge/license_-GPL3.0-blue" alt=""></a> 
+  <a href="https://opensource.org/license/mit/" ><img src="https://img.shields.io/badge/license_-MIT-blue" alt=""></a> 
   <a href="https://www.python.org/" ><img src="https://img.shields.io/badge/-python-grey?style=plastic&logo=python" alt=""/></a> 
-  <a href="https://www.selenium.dev/"><img src="https://img.shields.io/badge/-selenium-grey?style=plastic&logo=selenium" alt=""/></a> 
-  <a href="https://git-scm.com/"><img src="https://img.shields.io/badge/git-grey?style=plastic&logo=git" alt=""/></a> 
-  <a href="https://www.jetbrains.com/pycharm/"><img src="https://img.shields.io/badge/-pycharm-grey?style=plastic&logo=pycharm" alt=""/></a> 
-  <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/-mysql-grey?style=plastic&logo=mysql" alt=""/></a>  
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/-docker-grey?style=plastic&logo=docker" alt=""/></a>
 </p>
-<p align="center">
-    <img src=.img/carp.png height="200" width="200" alt="">
-</p>
---->
+
 
 ## Repository Introduction
 
-A python package that makes it easier for you to use local docker.
+A python package that makes it easier for you to use local docker. 
 
 💕 If it's helpful to you or cloning it, please star it. This is maximum encouragement for open-source contributors💕
 
@@ -86,10 +80,14 @@ if __name__ == '__main__':
 
 - [docker-py](https://github.com/docker/docker-py) — A Python library for the Docker Engine API.
 
-## Related materials
+## Related Materials
 
 - [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/)
 
+## Related Uses Repository
+
+- [opsariichthys-bidens](https://github.com/weiensong/opsariichthys-bidens) — About
+Building a Basic Information API for Chinese National Universities in the Handheld College Entrance Examination Based on Fastapi.
 
 ## Maintainers
 
