@@ -1,3 +1,4 @@
-from easierdocker.easier_docker import EasierDocker
+from .easier_docker import EasierDocker
+from .log_re import log
 
-__version__ = '1.0.0'
+__version__ = '2.0.0'

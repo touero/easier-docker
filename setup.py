@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='easier_docker',
-    version='1.0.0',
+    name='easier-docker',
+    version='2.0.0',
     author='weiensong',
     author_email='touer0018@gmail.com',
     description='A python package that makes it easier for you to use local docker.',
