@@ -16,17 +16,15 @@ If the container exists, it will be started directly. Then execute any service y
 💕 If it's helpful to you or cloning it, please star it. This is maximum encouragement for open-source contributors💕
 
 ## Install
-
-```shell
+```bash
 pip install easier-docker
 ```
 
 ## Usage
-
 Please check config parameters in [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/containers.html)
 
-### run example.py
-
+### Use examples in code
+Run the example.py
 ```python
 # example.py
 import os
@@ -55,7 +53,7 @@ if __name__ == '__main__':
     >>> container id: d9233f82e9a17627d51d294091b43295fdcf3e2fae204f2d8e2bb7080b88c0b0 is running
     """
 ```
-### docker_example.py
+The content of docker_example.py is
 ```python
 # docker_example.py
 def main():
@@ -72,51 +70,69 @@ if __name__ == '__main__':
 
 ```
 
-|                                                 |
-|-------------------------------------------------|
-| ![containers.png](image/containers.png)         |
-| ![containers_log.png](image/containers_log.png) |
+### Run directly from configuration file
+Currently supports yaml
+```bash
+easier-docker -c config.yaml
+```
+The content of config.yaml is
+```yaml
+# config.yaml
+image: python:3.9
+name: python_test
+volumes:
+  /tests/config:
+    bind: /path/to/container
+    mode: rw
+detach: true
+command:
+  - sh
+  - -c
+  - cd /path/to/container && python docker_example.py
+```
+
+
+<div align="center">
+  <img src="https://github.com/weiensong/easier-docker/blob/master/image/containers.png" alt="containers" style="max-width:400px; max-height:300px;" />
+</div>
+
+<div align="center">
+  <img src="https://github.com/weiensong/easier-docker/blob/master/image/containers_log.png" alt="containers log" style="max-width:400px; max-height:300px;" />
+</div>
+
+
 
 ## Related Repository
-
 - [docker-py](https://github.com/docker/docker-py) — A Python library for the Docker Engine API.
 
-## Related Materials
 
+## Related Materials
 - [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/)
 
-## Related Uses Repository
 
+## Related Uses Repository
 - [opsariichthys-bidens](https://github.com/weiensong/opsariichthys-bidens) — About
 Building a Basic Information API for Chinese National Universities in the Handheld College Entrance Examination Based on Fastapi.
 
-## Maintainers
 
+## Maintainers
 [@weiensong](https://github.com/weiensong)
 
 
-
 ## Contributing
-
 How I wish I could add more content in this repo !
-
 Feel free to dive in! [Open an issue](https://github.com/weiensong/easier_docker/issues) or submit PRs.
-
 Standard Python follows the [Python PEP-8](https://peps.python.org/pep-0008/) Code of Conduct.
 
 
-
 ### Contributors
+This project exists thanks to all the people who contribute.
 
-This project exists thanks to all the people who contribute.  
-  
 <a href="https://github.com/weiensong/carp/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=weiensong/easier_docker"  alt=""/>
 </a>
 
 
-
 ## License
-
 [MIT](https://github.com/weiensong/weiensong/blob/main/.universal/LICENSE) © weiensong
 

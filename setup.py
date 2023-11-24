@@ -14,6 +14,11 @@ setup(
     install_requires=[
             'docker~=6.1.3',
     ],
+    entry_points={
+            'console_scripts': [
+                'easier-docker={sys.executable} -m easier-docker.config_run:main',
+            ],
+        },
     classifiers=[
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3.8',
