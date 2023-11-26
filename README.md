@@ -13,7 +13,6 @@
 It can create a container based on the local image. If the image does not exist, the image will be pulled down. 
 If the container exists, it will be started directly. Then execute any service you want to execute in the container.
 
-💕 If it's helpful to you or cloning it, please star it. This is maximum encouragement for open-source contributors💕
 
 ## Install
 ```bash
@@ -21,7 +20,7 @@ pip install easier-docker
 ```
 
 ## Usage
-Please check config parameters in [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/containers.html)
+💡 Please check config parameters in [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/containers.html)
 
 ### Use examples in code
 Run the example.py
@@ -81,7 +80,7 @@ The content of config.yaml is
 image: python:3.9
 name: python_test
 volumes:
-  /tests/config:
+  /Users/admin/data/code_project/easier-docker/tests:
     bind: /path/to/container
     mode: rw
 detach: true
@@ -89,6 +88,7 @@ command:
   - sh
   - -c
   - cd /path/to/container && python docker_example.py
+
 ```
 
 

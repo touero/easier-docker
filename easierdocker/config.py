@@ -7,7 +7,7 @@ class Config:
 
     def load_file(self) -> dict:
         config = {}
-        if self.file_path.endswith('yaml'):
+        if self.file_path.endswith('.yaml'):
             config: dict = yaml.load(open(self.file_path, encoding='utf8'), yaml.FullLoader)
         return config
 
