@@ -13,7 +13,6 @@ This is based on [docker-py](https://github.com/docker/docker-py?tab=readme-ov-f
 It can create a container based on the local image. If the image does not exist, the image will be pulled down. 
 If the container exists, it will be started directly. Then execute any service you want to execute in the container.
 
-💕 If it's helpful to you or cloning it, please star it. This is maximum encouragement for open-source contributors💕
 
 ## Install
 ```bash
