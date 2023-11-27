@@ -48,10 +48,13 @@ if __name__ == '__main__':
     easier_docker = EasierDocker(config)
     easier_docker.start()
     """
-    >>> Finding python:3.9 docker image in local
-    >>> Finding python_test docker container in local
-    >>> ContainerNotFound: python_test
-    >>> container id: d9233f82e9a17627d51d294091b43295fdcf3e2fae204f2d8e2bb7080b88c0b0 is running
+    >>> 2023-11-27 14:40:29,264 - INFO - easier-docker ==> Find docker image: [python:3.9] locally...: 
+    >>> 2023-11-27 14:40:29,280 - INFO - easier-docker ==> Image: [python:3.9] is found locally
+    >>> 2023-11-27 14:40:29,280 - INFO - easier-docker ==> Find docker container: [python_test] locally...: 
+    >>> 2023-11-27 14:40:29,284 - INFO - easier-docker ==> ContainerNotFound: [python_test], it will be created
+    >>> 2023-11-27 14:40:29,558 - INFO - easier-docker ==> Container name: [python_test] is running
+    >>> 2023-11-27 14:40:29,558 - INFO - easier-docker ==> Container id: [58509ced60ba] is running
+    >>> 2023-11-27 14:40:29,559 - INFO - easier-docker ==> Successfully container is running and be created at 2023-11-27T06:40:29.291320745Z
     """
 ```
 The content of docker_example.py is
@@ -94,14 +97,10 @@ command:
 ```
 
 
-<div align="center">
-  <img src="https://github.com/weiensong/easier-docker/blob/master/image/containers.png" alt="containers" style="max-width:400px; max-height:300px;" />
-</div>
-
-<div align="center">
-  <img src="https://github.com/weiensong/easier-docker/blob/master/image/containers_log.png" alt="containers log" style="max-width:400px; max-height:300px;" />
-</div>
-
+|                                                                                                        |
+|--------------------------------------------------------------------------------------------------------|
+| ![containers.png](https://github.com/weiensong/easier-docker/blob/master/image/containers.png)         |
+| ![containers_log.png](https://github.com/weiensong/easier-docker/blob/master/image/containers_log.png) |
 
 
 ## Related Repository
