@@ -12,6 +12,6 @@ class LogRe:
         self.logger.info(msg)
 
 
-logger = LogRe()
-log = logger.log_info
+_logger = LogRe()
+log = _logger.log_info
 
