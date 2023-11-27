@@ -9,10 +9,11 @@
 
 
 ## Repository Introduction
-
+This is based on [docker-py](https://github.com/docker/docker-py?tab=readme-ov-file) which makes it easier to run your program in docker.
 It can create a container based on the local image. If the image does not exist, the image will be pulled down. 
 If the container exists, it will be started directly. Then execute any service you want to execute in the container.
 
+💕 If it's helpful to you or cloning it, please star it. This is maximum encouragement for open-source contributors💕
 
 ## Install
 ```bash
@@ -23,7 +24,9 @@ pip install easier-docker
 💡 Please check config parameters in [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/containers.html)
 
 ### Use examples in code
-Run the example.py
+```bash
+python example.py
+```
 ```python
 # example.py
 import os
@@ -134,5 +137,5 @@ This project exists thanks to all the people who contribute.
 
 
 ## License
-[MIT](https://github.com/weiensong/weiensong/blob/main/.universal/LICENSE) © weiensong
+[Apache License 2.0](https://github.com/weiensong/easier-docker/blob/master/LICENSE)
 
