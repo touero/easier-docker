@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='easier-docker',
-    version='2.0.0',
+    version='2.1.0',
     author='weiensong',
     author_email='touer0018@gmail.com',
     description='It can create a container based on the local image. If the image does not exist, the image will be '
@@ -23,8 +23,12 @@ setup(
         ],
     },
     classifiers=[
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
     keywords='easy, docker, docker sdk, python docker',
     project_urls={
