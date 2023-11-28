@@ -46,6 +46,8 @@ class EasierDocker:
             if self.container_name == container.name:
                 log(f'Container name: [{container.name}] is found locally')
                 log(f'Container id: [{container.short_id}] is found locally')
+                ip_address = container.attrs['NetworkSettings']['IPAddress']
+                log(f'Container ip address: [{ip_address}]')
                 created_time = container.attrs['Created']
                 log(f'Successfully container continue running and be created at {created_time}')
                 return container
@@ -57,6 +59,8 @@ class EasierDocker:
             container: Container = self._client.containers.run(**self.config)
             log(f'Container name: [{container.name}] is running')
             log(f'Container id: [{container.short_id}] is running')
+            ip_address = container.attrs['NetworkSettings']['IPAddress']
+            log(f'Container ip address: [{ip_address}]')
             created_time = container.attrs['Created']
             log(f'Successfully container is running and be created at {created_time}')
         except Exception as e:
