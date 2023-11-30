@@ -117,7 +117,7 @@ Building a Basic Information API for Chinese National Universities in the Handhe
 
 
 ## Maintainers
-[@weiensong](https://github.com/weiensong)
+[@touero](https://github.com/touero)
 
 
 ## Contributing
