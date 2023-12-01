@@ -75,7 +75,7 @@ if __name__ == '__main__':
 ```
 
 ### Run directly from configuration file
-Currently supports yaml
+Currently supports type of file: _yml_, _yaml_, _json_
 ```bash
 easier-docker -c config.yaml
 ```
