@@ -1,4 +1,7 @@
+import json
 import yaml
+
+from easierdocker.log_re import log
 
 
 class Config:
@@ -7,7 +10,11 @@ class Config:
 
     def load_file(self) -> dict:
         config = {}
-        if self.file_path.endswith('.yaml'):
-            config: dict = yaml.load(open(self.file_path, encoding='utf8'), yaml.FullLoader)
+        with open(self.file_path, encoding='utf8') as file:
+            if self.file_path.endswith(('.yaml', '.yml')):
+                config: dict = yaml.safe_load(file)
+            elif self.file_path.endswith('.json'):
+                config: dict = json.load(file)
+            else:
+                log(f'Currently unsupported file types: {self.file_path}')
         return config
-
