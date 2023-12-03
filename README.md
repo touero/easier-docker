@@ -103,15 +103,14 @@ command:
 | ![containers_log.png](https://github.com/weiensong/easier-docker/blob/master/image/containers_log.png) |
 
 
-## Related Repository
+## Related 
+### Repository
 - [docker-py](https://github.com/docker/docker-py) — A Python library for the Docker Engine API.
 
-
-## Related Materials
+### Materials
 - [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/)
 
-
-## Related Uses Repository
+### Repository Used
 - [opsariichthys-bidens](https://github.com/weiensong/opsariichthys-bidens) — About
 Building a Basic Information API for Chinese National Universities in the Handheld College Entrance Examination Based on Fastapi.
 
@@ -121,8 +120,7 @@ Building a Basic Information API for Chinese National Universities in the Handhe
 
 
 ## Contributing
-How I wish I could add more content in this repo !
-Feel free to dive in! [Open an issue](https://github.com/weiensong/easier_docker/issues) or submit PRs.
+[Open an issue](https://github.com/weiensong/easier_docker/issues) or submit PRs.  
 Standard Python follows the [Python PEP-8](https://peps.python.org/pep-0008/) Code of Conduct.
 
 
