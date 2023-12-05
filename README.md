@@ -48,13 +48,14 @@ if __name__ == '__main__':
     easier_docker = EasierDocker(config)
     easier_docker.start()
     """
-    >>> 2023-11-27 14:40:29,264 - INFO - easier-docker ==> Find docker image: [python:3.9] locally...: 
-    >>> 2023-11-27 14:40:29,280 - INFO - easier-docker ==> Image: [python:3.9] is found locally
-    >>> 2023-11-27 14:40:29,280 - INFO - easier-docker ==> Find docker container: [python_test] locally...: 
-    >>> 2023-11-27 14:40:29,284 - INFO - easier-docker ==> ContainerNotFound: [python_test], it will be created
-    >>> 2023-11-27 14:40:29,558 - INFO - easier-docker ==> Container name: [python_test] is running
-    >>> 2023-11-27 14:40:29,558 - INFO - easier-docker ==> Container id: [58509ced60ba] is running
-    >>> 2023-11-27 14:40:29,559 - INFO - easier-docker ==> Successfully container is running and be created at 2023-11-27T06:40:29.291320745Z
+    >>> 2023-12-05 21:02:04,327 - INFO - easier-docker ==> Find docker image: [python:3.9] locally...
+    >>> 2023-12-05 21:02:04,330 - INFO - easier-docker ==> Image: [python:3.9] is found locally
+    >>> 2023-12-05 21:02:04,330 - INFO - easier-docker ==> Find docker container: [python_test] locally...
+    >>> 2023-12-05 21:02:04,332 - INFO - easier-docker ==> ContainerNotFound: [python_test], it will be created
+    >>> 2023-12-05 21:02:04,568 - INFO - easier-docker ==> Container name: [python_test] is running
+    >>> 2023-12-05 21:02:04,568 - INFO - easier-docker ==> Container id: [50e5ae686a9f] is running
+    >>> 2023-12-05 21:02:04,568 - INFO - easier-docker ==> Container ip address: []
+    >>> 2023-12-05 21:02:04,568 - INFO - easier-docker ==> Successfully container is running and be created at 2023-12-05T13:02:04.344804339Z
     """
 ```
 The content of docker_example.py is
@@ -85,7 +86,7 @@ The content of config.yaml is
 image: python:3.9
 name: python_test
 volumes:
-  /Users/admin/data/code_project/easier-docker/tests:
+  /Users/admin/data/code_project/easier-docker/example:
     bind: /path/to/container
     mode: rw
 detach: true
@@ -97,10 +98,10 @@ command:
 ```
 
 
-|                                                                                                        |
-|--------------------------------------------------------------------------------------------------------|
-| ![containers.png](https://github.com/weiensong/easier-docker/blob/master/image/containers.png)         |
-| ![containers_log.png](https://github.com/weiensong/easier-docker/blob/master/image/containers_log.png) |
+|                                                                                                     |
+|-----------------------------------------------------------------------------------------------------|
+| ![container.png](https://github.com/weiensong/easier-docker/blob/master/image/container.png)        |
+| ![container_log.png](https://github.com/weiensong/easier-docker/blob/master/image/container_log.png)|
 
 
 ## Related 
@@ -120,14 +121,14 @@ Building a Basic Information API for Chinese National Universities in the Handhe
 
 
 ## Contributing
-[Open an issue](https://github.com/weiensong/easier_docker/issues) or submit PRs.  
+[Open an issue](https://github.com/weiensong/easier_docker/issues) or submit PRs.    
 Standard Python follows the [Python PEP-8](https://peps.python.org/pep-0008/) Code of Conduct.
 
 
 ### Contributors
 This project exists thanks to all the people who contribute.
 
-<a href="https://github.com/weiensong/carp/graphs/contributors">
+<a href="https://github.com/touero/easier-docker/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=weiensong/easier_docker"  alt=""/>
 </a>
 
