@@ -19,7 +19,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'easier-docker=easierdocker.config_run:main',
+            'easier-docker=easierdocker.__main__:main',
+
         ],
     },
     classifiers=[
