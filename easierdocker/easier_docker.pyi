@@ -1,32 +1,60 @@
+import docker
 from typing import Union
 from docker.models.containers import Container
 from docker import DockerClient
 
 
 class EasierDocker:
-    _client: DockerClient
-
     def __init__(self, config: dict) -> None:
-        self.config = config
-        self.image_name = self.config['image']
-        self.container_name = self.config['name']
+        self._config = config
+        self._image_name = self._config['image']
+        self._container_name = self._config['name']
+        self._client: DockerClient() = docker.from_env()
         """
             Initialize client, config, image name, container name
         """
 
-    def _get_image(self) -> None:
+    @property
+    def config(self) -> dict:
+        """
+            Return the config.
+        """
+        return self._config
+
+    @property
+    def image_name(self) -> str:
+        """
+            Return the image name.
+        """
+        return self._image_name
+
+    @property
+    def container_name(self) -> str:
+        """
+            Return the container name.
+        """
+        return self._container_name
+
+    @property
+    def client(self) -> DockerClient:
+        """
+            Return the client.
+        """
+        return self._client
+
+    def __get_image(self) -> None:
         """
             Search for the image that exists locally. If it does not exist, the image will be pulled.
         """
         ...
 
-    def _get_container(self) -> Union[Container, None]:
+    def __get_container(self) -> Union[Container, None]:
         """
             Find and return the locally existing container.
         """
         ...
 
-    def _run_container(self) -> None:
+    def __run_container(self) -> None:
         """
             Start the found container. If the container does not exist, it will create one according to the image.
         """

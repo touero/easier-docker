@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name='easier-docker',
-    version='2.1.0',
-    author='weiensong',
+    version='2.1.1',
+    author='EnSong Wei',
     author_email='touer0018@gmail.com',
     description='It can create a container based on the local image. If the image does not exist, the image will be '
                 'pulled down. If the container exists, it will be started directly. Then execute any service you want '
@@ -19,7 +19,8 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'easier-docker=easierdocker.config_run:main',
+            'easier-docker=easierdocker.__main__:main',
+
         ],
     },
     classifiers=[

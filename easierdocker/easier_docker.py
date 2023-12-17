@@ -10,17 +10,33 @@ from docker.models.containers import Container
 
 class EasierDocker:
     def __init__(self, config: dict):
+        self._config = config
+        self._image_name = self._config['image']
+        self._container_name = self._config['name']
         try:
             self._client = docker.from_env()
         except Exception as e:
             if isinstance(e, DockerException):
                 raise DockerConnectionError
             raise e
-        self.config = config
-        self.image_name = self.config['image']
-        self.container_name = self.config['name']
 
-    def _get_image(self):
+    @property
+    def config(self):
+        return self._config
+
+    @property
+    def client(self):
+        return self._client
+
+    @property
+    def image_name(self):
+        return self._image_name
+
+    @property
+    def container_name(self):
+        return self._container_name
+
+    def __get_image(self):
         log(f'Find docker image: [{self.image_name}] locally...')
         try:
             self._client.images.get(self.image_name)
@@ -39,7 +55,7 @@ class EasierDocker:
             else:
                 log(str(e))
 
-    def _get_container(self) -> Union[Container, None]:
+    def __get_container(self) -> Union[Container, None]:
         log(f'Find docker container: [{self.container_name}] locally...')
         containers = self._client.containers.list(all=True)
         for container in containers:
@@ -54,7 +70,7 @@ class EasierDocker:
         log(f'ContainerNotFound: [{self.container_name}], it will be created')
         return None
 
-    def _run_container(self):
+    def __run_container(self):
         try:
             container: Container = self._client.containers.run(**self.config)
             log(f'Container name: [{container.name}] is running')
@@ -71,9 +87,9 @@ class EasierDocker:
             raise e
 
     def start(self):
-        self._get_image()
-        container = self._get_container()
+        self.__get_image()
+        container = self.__get_container()
         if container:
             container.start()
         else:
-            self._run_container()
+            self.__run_container()
