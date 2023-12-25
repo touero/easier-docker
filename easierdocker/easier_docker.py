@@ -1,11 +1,13 @@
 import docker
 import json
-from .exceptions import DockerConnectionError
-from .log_re import log
 
 from typing import Union
 from docker.errors import ImageNotFound, APIError, DockerException
 from docker.models.containers import Container
+from .exceptions import DockerConnectionError
+from .log_re import log
+from .constants import ContainerStatus
+from .docker_utils import check_container
 
 
 class EasierDocker:
@@ -60,6 +62,9 @@ class EasierDocker:
         containers = self._client.containers.list(all=True)
         for container in containers:
             if self.container_name == container.name:
+                container.start()
+                if check_container(container) is ContainerStatus.EXITED:
+                    return container
                 log(f'Container name: [{container.name}] is found locally')
                 log(f'Container id: [{container.short_id}] is found locally')
                 ip_address = container.attrs['NetworkSettings']['IPAddress']
@@ -73,6 +78,8 @@ class EasierDocker:
     def __run_container(self):
         try:
             container: Container = self._client.containers.run(**self.config)
+            if check_container(container) is ContainerStatus.EXITED:
+                return
             log(f'Container name: [{container.name}] is running')
             log(f'Container id: [{container.short_id}] is running')
             ip_address = container.attrs['NetworkSettings']['IPAddress']
@@ -86,10 +93,26 @@ class EasierDocker:
                 log(f'An error occurred: {str(e)}')
             raise e
 
+    def __get_all_networks(self) -> list:
+        networks = self._client.networks.list()
+        for network in networks:
+            log(f'Network id: [{network.short_id}], name: [{network.name}]')
+        return networks
+
+    def create_network(self, network_name, driver):
+        networks = self.__get_all_networks()
+        for network in networks:
+            if network.name == network_name:
+                log(f'Network: [{network_name}] is found locally...')
+                self._config['network'] = network_name
+                return
+        log(f'Network: [{network_name}] is not found locally, it will be created')
+        self._client.networks.create(network_name, driver)
+        log(f'Network: [{network_name}] is created')
+        self._config['network'] = network_name
+
     def start(self):
         self.__get_image()
         container = self.__get_container()
-        if container:
-            container.start()
-        else:
+        if container is None:
             self.__run_container()

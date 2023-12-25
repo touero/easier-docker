@@ -17,4 +17,5 @@ if __name__ == '__main__':
                                 'python docker_example.py'],
     }
     easier_docker = EasierDocker(config)
+    easier_docker.create_network('bridge', 'bridge')
     easier_docker.start()
