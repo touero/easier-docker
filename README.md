@@ -75,36 +75,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
-    """
-    
-    >>> 2023-12-29 15:08:58,703 - INFO - easier-docker ==> config =
-    >>>  {
-    >>>     "image": "python:3.9",
-    >>>     "name": "python_test",
-    >>>     "volumes": {
-    >>>         "D:\\code-project\\EasierDocker\\example": {
-    >>>             "bind": "/path/to/container",
-    >>>             "mode": "rw"
-    >>>         }
-    >>>     },
-    >>>     "detach": true,
-    >>>     "command": [
-    >>>         "sh",
-    >>>         "-c",
-    >>>         "cd /path/to/container && python docker_example.py"
-    >>>     ]
-    >>>  }
-    >>> 2023-12-29 15:08:58,707 - INFO - easier-docker ==> Find docker image: [python:3.9] locally...
-    >>> 2023-12-29 15:08:58,724 - INFO - easier-docker ==> Image: [python:3.9] is found locally
-    >>> 2023-12-29 15:08:58,725 - INFO - easier-docker ==> Find docker container: [python_test] locally...
-    >>> 2023-12-29 15:08:58,730 - INFO - easier-docker ==> ContainerNotFound: [python_test], it will be created
-    >>> 2023-12-29 15:09:00,989 - INFO - easier-docker ==> Container name: [python_test] is running
-    >>> 2023-12-29 15:09:00,990 - INFO - easier-docker ==> Container id: [a9b642f2ddf3] is running
-    >>> 2023-12-29 15:09:00,990 - INFO - easier-docker ==> Container ip address: [172.17.0.2]
-    >>> 2023-12-29 15:09:00,991 - INFO - easier-docker ==> Successfully container is running and be created at 2023-12-29T07:08:58.738605891Z
-    
-    """
 
 ```
 
@@ -127,6 +97,32 @@ command:
   - sh
   - -c
   - cd /path/to/container && python docker_example.py
+      
+    # >>> 2023-12-29 15:08:58,703 - INFO - easier-docker ==> config =
+    # >>>  {
+    # >>>     "image": "python:3.9",
+    # >>>     "name": "python_test",
+    # >>>     "volumes": {
+    # >>>         "D:\\code-project\\EasierDocker\\example": {
+    # >>>             "bind": "/path/to/container",
+    # >>>             "mode": "rw"
+    # >>>         }
+    # >>>     },
+    # >>>     "detach": true,
+    # >>>     "command": [
+    # >>>         "sh",
+    # >>>         "-c",
+    # >>>         "cd /path/to/container && python docker_example.py"
+    # >>>     ]
+    # >>>  }
+    # >>> 2023-12-29 15:08:58,707 - INFO - easier-docker ==> Find docker image: [python:3.9] locally...
+    # >>> 2023-12-29 15:08:58,724 - INFO - easier-docker ==> Image: [python:3.9] is found locally
+    # >>> 2023-12-29 15:08:58,725 - INFO - easier-docker ==> Find docker container: [python_test] locally...
+    # >>> 2023-12-29 15:08:58,730 - INFO - easier-docker ==> ContainerNotFound: [python_test], it will be created
+    # >>> 2023-12-29 15:09:00,989 - INFO - easier-docker ==> Container name: [python_test] is running
+    # >>> 2023-12-29 15:09:00,990 - INFO - easier-docker ==> Container id: [a9b642f2ddf3] is running
+    # >>> 2023-12-29 15:09:00,990 - INFO - easier-docker ==> Container ip address: [172.17.0.2]
+    # >>> 2023-12-29 15:09:00,991 - INFO - easier-docker ==> Successfully container is running and be created at 2023-12-29T07:08:58.738605891Z
 
 ```
 
