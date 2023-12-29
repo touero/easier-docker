@@ -10,8 +10,7 @@
 
 ## Repository Introduction
 This is based on [docker-py](https://github.com/docker/docker-py?tab=readme-ov-file) which makes it easier to run your program in docker.
-It can create a container based on the local image. If the image does not exist, the image will be pulled down. 
-If the container exists, it will be started directly. Then execute any service you want to execute in the container.
+Configure your container image information more easily in python, allowing the container in docker to execute the configured program you want to execute.
 
 
 ## Install
@@ -48,14 +47,18 @@ if __name__ == '__main__':
     easier_docker = EasierDocker(config)
     easier_docker.start()
     """
-    >>> 2023-12-05 21:02:04,327 - INFO - easier-docker ==> Find docker image: [python:3.9] locally...
-    >>> 2023-12-05 21:02:04,330 - INFO - easier-docker ==> Image: [python:3.9] is found locally
-    >>> 2023-12-05 21:02:04,330 - INFO - easier-docker ==> Find docker container: [python_test] locally...
-    >>> 2023-12-05 21:02:04,332 - INFO - easier-docker ==> ContainerNotFound: [python_test], it will be created
-    >>> 2023-12-05 21:02:04,568 - INFO - easier-docker ==> Container name: [python_test] is running
-    >>> 2023-12-05 21:02:04,568 - INFO - easier-docker ==> Container id: [50e5ae686a9f] is running
-    >>> 2023-12-05 21:02:04,568 - INFO - easier-docker ==> Container ip address: []
-    >>> 2023-12-05 21:02:04,568 - INFO - easier-docker ==> Successfully container is running and be created at 2023-12-05T13:02:04.344804339Z
+    >>> 2023-12-29 15:17:31,901 - INFO - easier-docker ==> Network id: [13c5a6cb0137], name: [host]
+    >>> 2023-12-29 15:17:31,901 - INFO - easier-docker ==> Network id: [27d6b39aeef6], name: [none]
+    >>> 2023-12-29 15:17:31,901 - INFO - easier-docker ==> Network id: [2c9ae2fbfe9d], name: [bridge]
+    >>> 2023-12-29 15:17:31,901 - INFO - easier-docker ==> Network: [bridge] is found locally...
+    >>> 2023-12-29 15:17:31,901 - INFO - easier-docker ==> Find docker image: [python:3.9] locally...
+    >>> 2023-12-29 15:17:31,906 - INFO - easier-docker ==> Image: [python:3.9] is found locally
+    >>> 2023-12-29 15:17:31,906 - INFO - easier-docker ==> Find docker container: [python_test] locally...
+    >>> 2023-12-29 15:17:31,910 - INFO - easier-docker ==> ContainerNotFound: [python_test], it will be created
+    >>> 2023-12-29 15:17:34,217 - INFO - easier-docker ==> Container name: [python_test] is running
+    >>> 2023-12-29 15:17:34,217 - INFO - easier-docker ==> Container id: [fd7fad6e9995] is running
+    >>> 2023-12-29 15:17:34,217 - INFO - easier-docker ==> Container ip address: [172.17.0.2]
+    >>> 2023-12-29 15:17:34,217 - INFO - easier-docker ==> Successfully container is running and be created at 2023-12-29T07:17:31.912747785Z
     """
 ```
 The content of docker_example.py is
@@ -72,6 +75,36 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
+    """
+    
+    >>> 2023-12-29 15:08:58,703 - INFO - easier-docker ==> config =
+    >>>  {
+    >>>     "image": "python:3.9",
+    >>>     "name": "python_test",
+    >>>     "volumes": {
+    >>>         "D:\\code-project\\EasierDocker\\example": {
+    >>>             "bind": "/path/to/container",
+    >>>             "mode": "rw"
+    >>>         }
+    >>>     },
+    >>>     "detach": true,
+    >>>     "command": [
+    >>>         "sh",
+    >>>         "-c",
+    >>>         "cd /path/to/container && python docker_example.py"
+    >>>     ]
+    >>>  }
+    >>> 2023-12-29 15:08:58,707 - INFO - easier-docker ==> Find docker image: [python:3.9] locally...
+    >>> 2023-12-29 15:08:58,724 - INFO - easier-docker ==> Image: [python:3.9] is found locally
+    >>> 2023-12-29 15:08:58,725 - INFO - easier-docker ==> Find docker container: [python_test] locally...
+    >>> 2023-12-29 15:08:58,730 - INFO - easier-docker ==> ContainerNotFound: [python_test], it will be created
+    >>> 2023-12-29 15:09:00,989 - INFO - easier-docker ==> Container name: [python_test] is running
+    >>> 2023-12-29 15:09:00,990 - INFO - easier-docker ==> Container id: [a9b642f2ddf3] is running
+    >>> 2023-12-29 15:09:00,990 - INFO - easier-docker ==> Container ip address: [172.17.0.2]
+    >>> 2023-12-29 15:09:00,991 - INFO - easier-docker ==> Successfully container is running and be created at 2023-12-29T07:08:58.738605891Z
+    
+    """
 
 ```
 
