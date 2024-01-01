@@ -2,16 +2,16 @@ from setuptools import setup, find_packages
 
 setup(
     name='easier-docker',
-    version='2.1.1',
+    version='2.2.1',
     author='EnSong Wei',
     author_email='touer0018@gmail.com',
-    description='It can create a container based on the local image. If the image does not exist, the image will be '
-                'pulled down. If the container exists, it will be started directly. Then execute any service you want '
-                'to execute in the container.',
+    description='Configure your container image information more easily in python, allowing the container in docker '
+                'to execute the configured program you want to execute',
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/weiensong/easierdocker',
     packages=find_packages(),
+    license='Apache License 2.0',
     install_requires=[
         'docker~=6.1.3',
         'setuptools~=68.2.0',
@@ -20,7 +20,6 @@ setup(
     entry_points={
         'console_scripts': [
             'easier-docker=easierdocker.__main__:main',
-
         ],
     },
     classifiers=[
