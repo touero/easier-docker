@@ -80,7 +80,6 @@ if __name__ == '__main__':
 ```
 
 ### Run directly from configuration file
-## Usage
 > [!Note]
 > Currently supports type of file: _yml_, _yaml_, _json_
 
