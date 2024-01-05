@@ -19,7 +19,8 @@ pip install easier-docker
 ```
 
 ## Usage
-💡 Please check config parameters in [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/containers.html)
+> [!Important]
+> Please check config parameters in [Docker SDK for Python](https://docker-py.readthedocs.io/en/stable/containers.html).
 
 ### Use examples in code
 ```bash
@@ -79,7 +80,10 @@ if __name__ == '__main__':
 ```
 
 ### Run directly from configuration file
-Currently supports type of file: _yml_, _yaml_, _json_
+## Usage
+> [!Note]
+> Currently supports type of file: _yml_, _yaml_, _json_
+
 ```bash
 easier-docker -c config.yaml
 ```
