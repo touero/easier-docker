@@ -2,9 +2,9 @@ import docker
 import json
 
 from typing import Union
-from docker.errors import ImageNotFound, APIError, DockerException
+from docker.errors import ImageNotFound, APIError, DockerException, NotFound
 from docker.models.containers import Container
-from .exceptions import DockerConnectionError
+from .exceptions import DockerConnectionError, NotFoundImageInDockerHub
 from .log_re import log
 from .constants import ContainerStatus
 from .docker_utils import check_container
@@ -47,12 +47,15 @@ class EasierDocker:
             if isinstance(e, ImageNotFound):
                 log(f'ImageNotFound: {str(e)}, it will be pulled')
                 log(f'Waiting docker pull {self.image_name}...')
-                for event in self._client.api.pull(self.image_name, stream=True):
-                    event_info = json.loads(event.decode('utf-8'))
-                    if 'status' in event_info:
-                        status = event_info['status']
-                        progress = event_info.get('progress', '')
-                        log(f'Status: {status}, Progress: {progress}')
+                try:
+                    for event in self._client.api.pull(self.image_name, stream=True):
+                        event_info = json.loads(event.decode('utf-8'))
+                        if 'status' in event_info:
+                            status = event_info['status']
+                            progress = event_info.get('progress', '')
+                            log(f'Status: {status}, Progress: {progress}')
+                except NotFound:
+                    raise NotFoundImageInDockerHub(self.image_name)
                 log(f'Docker pull {self.image_name} finish')
             else:
                 log(str(e))
