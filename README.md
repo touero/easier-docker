@@ -42,8 +42,7 @@ if __name__ == '__main__':
             f'{host_script}': {'bind': container_script, 'mode': 'rw'}
         },
         'detach': True,
-        'command': ["sh", "-c", f'cd {container_script} &&'
-                                'python docker_example.py'],
+        'command': ["sh", "-c", f'cd {container_script} && python docker_example.py'],
     }
     easier_docker = EasierDocker(config)
     easier_docker.start()
@@ -130,10 +129,10 @@ command:
 ```
 
 
-|                                                                                                     |
-|-----------------------------------------------------------------------------------------------------|
-| ![container.png](https://github.com/weiensong/easier-docker/blob/master/image/container.png)        |
-| ![container_log.png](https://github.com/weiensong/easier-docker/blob/master/image/container_log.png)|
+|                                                                                                      |
+|------------------------------------------------------------------------------------------------------|
+| ![container.png](https://github.com/weiensong/easier-docker/blob/master/image/container.png)         |
+| ![container_log.png](https://github.com/weiensong/easier-docker/blob/master/image/container_log.png) |
 
 
 ## Related 
