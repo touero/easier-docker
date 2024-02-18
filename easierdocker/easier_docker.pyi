@@ -5,35 +5,44 @@ from docker import DockerClient
 
 
 class EasierDocker:
-    def __init__(self, config: dict) -> None:
-        self._config = config
-        self._image_name = self._config['image']
-        self._container_name = self._config['name']
+    def __init__(self, container_config: dict, network_config=None) -> None:
+        if network_config is None:
+            network_config = {}
+
+        self._container_config = container_config
+        self._network_config = network_config
         self._client: DockerClient() = docker.from_env()
         """
             Initialize client, config, image name, container name
         """
 
     @property
-    def config(self) -> dict:
+    def container_config(self) -> dict:
         """
-            Return the config.
+            Return the container config.
         """
-        return self._config
+        return self._container_config
+
+    @property
+    def network_config(self):
+        """
+            Return the network config.
+        :return:
+        """
 
     @property
     def image_name(self) -> str:
         """
             Return the image name.
         """
-        return self._image_name
+        return self._container_config['image']
 
     @property
     def container_name(self) -> str:
         """
             Return the container name.
         """
-        return self._container_name
+        return self._container_config['name']
 
     @property
     def client(self) -> DockerClient:
@@ -45,39 +54,40 @@ class EasierDocker:
     def __get_image(self) -> None:
         """
             Search for the image that exists locally. If it does not exist, the image will be pulled.
+        :return:
         """
         ...
 
     def __get_container(self) -> Union[Container, None]:
         """
             Find and return the locally existing container.
+        :return: obj of the container or None
         """
         ...
 
     def __run_container(self) -> None:
         """
             Start the found container. If the container does not exist, it will create one according to the image.
+        :return:
         """
         ...
 
     def __get_all_networks(self) -> list:
         """
-            Return all the networks.
+        :return: list, all already exits networks
         """
         ...
 
-    def create_network(self, network_name: str, driver: str) -> None:
+    def __create_network(self) -> None:
         """
-            Create a network.
-
-            Args:
-                network_name (str): The name of the network.
-                driver (str): The driver to be used.
+            create and manage networks on the server.
+        :return:
         """
         ...
 
     def start(self) -> None:
         """
-            Start the portal.
+            where to start.
+        :return:
         """
         ...

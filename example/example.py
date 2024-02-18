@@ -6,7 +6,7 @@ if __name__ == '__main__':
     parent_dir = os.path.dirname(os.getcwd())
     host_script = os.path.join(parent_dir, 'example')
     container_script = '/path/to/container'
-    config = {
+    container_config = {
         'image': 'python:3.9',
         'name': 'python_test',
         'volumes': {
@@ -16,6 +16,9 @@ if __name__ == '__main__':
         'command': ["sh", "-c", f'cd {container_script} &&'
                                 'python docker_example.py'],
     }
-    easier_docker = EasierDocker(config)
-    easier_docker.create_network('bridge', 'bridge')
+    network_config = {
+        'name': 'bridge',
+        'driver': 'bridge',
+    }
+    easier_docker = EasierDocker(container_config, network_config)
     easier_docker.start()
