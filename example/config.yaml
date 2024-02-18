@@ -1,12 +1,18 @@
 # config.yaml
-image: python:3.9
-name: python_test
-volumes:
-  /Users/weiensong/data/code_project/easier-docker/example:
-    bind: /path/to/container
-    mode: rw
-detach: true
-command:
-  - sh
-  - -c
-  - cd /path/to/container && python docker_example.py
+
+container:
+  image: python:3.9
+  name: python_test
+  volumes:
+    D:\code-project\EasierDocker\example:
+      bind: /path/to/container
+      mode: rw
+  detach: true
+  command:
+    - sh
+    - -c
+    - cd /path/to/container && python docker_example.py
+
+network:
+  name: bridge
+  driver: bridge

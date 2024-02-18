@@ -11,10 +11,13 @@ from .docker_utils import check_container
 
 
 class EasierDocker:
-    def __init__(self, config: dict):
-        self._config = config
-        self._image_name = self._config['image']
-        self._container_name = self._config['name']
+    def __init__(self, container_config: dict, network_config=None):
+        if network_config is None:
+            network_config = {}
+
+        self._container_config = container_config
+        self._network_config = network_config
+
         try:
             self._client = docker.from_env()
         except Exception as e:
@@ -23,8 +26,12 @@ class EasierDocker:
             raise e
 
     @property
-    def config(self):
-        return self._config
+    def container_config(self):
+        return self._container_config
+
+    @property
+    def network_config(self):
+        return self._network_config
 
     @property
     def client(self):
@@ -32,11 +39,11 @@ class EasierDocker:
 
     @property
     def image_name(self):
-        return self._image_name
+        return self._container_config['image']
 
     @property
     def container_name(self):
-        return self._container_name
+        return self._container_config['name']
 
     def __get_image(self):
         log(f'Find docker image: [{self.image_name}] locally...')
@@ -80,7 +87,7 @@ class EasierDocker:
 
     def __run_container(self):
         try:
-            container: Container = self._client.containers.run(**self.config)
+            container: Container = self._client.containers.run(**self.container_config)
             if check_container(container) is ContainerStatus.EXITED:
                 return
             log(f'Container name: [{container.name}] is running')
@@ -102,20 +109,24 @@ class EasierDocker:
             log(f'Network id: [{network.short_id}], name: [{network.name}]')
         return networks
 
-    def create_network(self, network_name, driver):
+    def __create_network(self) -> None:
+        if not self._network_config.get('name'):
+            return
+        network_name = self._network_config['name']
         networks = self.__get_all_networks()
         for network in networks:
             if network.name == network_name:
                 log(f'Network: [{network_name}] is found locally...')
-                self._config['network'] = network_name
+                self._container_config['network'] = network_name
                 return
         log(f'Network: [{network_name}] is not found locally, it will be created')
-        self._client.networks.create(network_name, driver)
+        self._client.networks.create(**self.network_config)
         log(f'Network: [{network_name}] is created')
-        self._config['network'] = network_name
+        self._container_config['network'] = network_name
 
     def start(self):
         self.__get_image()
+        self.__create_network()
         container = self.__get_container()
         if container is None:
             self.__run_container()
