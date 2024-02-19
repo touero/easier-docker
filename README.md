@@ -19,7 +19,7 @@ pip install easier-docker
 ```
 
 ## Usage
-Please check [wiki](https://github.com/weiensong/easier_docker/blob/main/docs/README.md).
+Please check [wiki](https://github.com/touero/easier-docker/wiki).
 
 ## Related 
 ### Repository
