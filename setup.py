@@ -2,14 +2,14 @@ from setuptools import setup, find_packages
 
 setup(
     name='easier-docker',
-    version='2.2.1',
+    version='2.2.2',
     author='EnSong Wei',
     author_email='touer0018@gmail.com',
     description='Configure your container image information more easily in python, allowing the container in docker '
                 'to execute the configured program you want to execute',
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/weiensong/easierdocker',
+    url='https://github.com/touero/easier-docker',
     packages=find_packages(),
     license='Apache License 2.0',
     install_requires=[
@@ -32,7 +32,7 @@ setup(
     ],
     keywords='easy, docker, docker sdk, python docker',
     project_urls={
-        'Bug Reports': 'https://github.com/weiensong/easier_docker/issues',
-        'Source': 'https://github.com/weiensong/easierdocker',
+        'Bug Reports': 'https://github.com/touero/easier-docker/issues',
+        'Source': 'https://github.com/touero/easier-docker',
     },
 )
