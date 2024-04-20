@@ -6,3 +6,5 @@ exclude venv
 exclude dist
 exclude build
 exclude *.egg-info
+exclude tests
+exclude .coverage

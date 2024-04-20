@@ -4,5 +4,6 @@ clean:
 	rm -rf dist/*
 	rm -rf dist/*
 	rm -rf easier_docker.egg-info/*
+	rm -rf .coverage
 
 .PHONY: clean

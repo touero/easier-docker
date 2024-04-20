@@ -6,3 +6,4 @@ dist/
 easier_docker.egg-info/
 venv/
 build/
+.coverage
