@@ -20,10 +20,8 @@ class EasierDocker:
 
         try:
             self._client = docker.from_env()
-        except Exception as e:
-            if isinstance(e, DockerException):
-                raise DockerConnectionError
-            raise e
+        except DockerException:
+            raise DockerConnectionError
 
     @property
     def container_config(self):
