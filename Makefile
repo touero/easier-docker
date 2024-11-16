@@ -1,4 +1,4 @@
-.PHONY: tets clean all
+.PHONY: test clean all
 
 all: test clean
 
