@@ -15,8 +15,8 @@ Two params it need now:
 
 Two params config please check:
 > [!Important]
-> 1. __container_config__: [Docker SDK for Python with Container](https://docker-py.readthedocs.io/en/6.1.3/containers.html)
-> 2. __network_config__: [Docker SDK for Python with Network](https://docker-py.readthedocs.io/en/6.1.3/networks.html)
+> 1. __container_config__: [Docker SDK for Python with Container](https://docker-py.readthedocs.io/en/7.1.0/containers.html)
+> 2. __network_config__: [Docker SDK for Python with Network](https://docker-py.readthedocs.io/en/7.1.0/networks.html)
 ## Usage
 ### Use examples in code
 ```bash
@@ -29,7 +29,7 @@ import os
 from easierdocker import EasierDocker
 
 if __name__ == '__main__':
-    parent_dir = os.path.dirname(os.getcwd())
+    parent_dir = os.getcwd()
     host_script = os.path.join(parent_dir, 'example')
     container_script = '/path/to/container'
     container_config = {

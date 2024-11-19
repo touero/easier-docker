@@ -3,7 +3,7 @@ import os
 from easierdocker import EasierDocker
 
 if __name__ == '__main__':
-    parent_dir = os.path.dirname(os.getcwd())
+    parent_dir = os.getcwd()
     host_script = os.path.join(parent_dir, 'example')
     container_script = '/path/to/container'
     container_config = {
