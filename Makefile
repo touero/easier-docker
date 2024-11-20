@@ -1,4 +1,4 @@
-.PHONY: test clean build all
+.PHONY: test clean build upload all
 
 TWINE_UPLOAD := twine upload --repository pypi --username __token__ --password $(TWINE_API_TOKEN)
 
@@ -25,5 +25,3 @@ upload:
 		exit 1; \
 	fi
 	$(TWINE_UPLOAD) dist/*
-debug:
-	@echo "TWINE_API_TOKEN = $(TWINE_API_TOKEN)"
