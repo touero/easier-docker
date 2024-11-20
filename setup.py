@@ -2,20 +2,23 @@ from setuptools import setup, find_packages
 
 setup(
     name='easier-docker',
-    version='2.2.2',
+    version='2.2.3',
     author='EnSong Wei',
     author_email='touer0018@gmail.com',
     description='Configure your container image information more easily in python, allowing the container in docker '
-                'to execute the configured program you want to execute',
+                'to execute the configured program you want to execute.',
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/touero/easier-docker',
     packages=find_packages(),
     license='Apache License 2.0',
     install_requires=[
-        'docker~=6.1.3',
+        'docker~=7.1.0',
         'setuptools~=68.2.0',
-        'PyYAML~=6.0.1'
+        'PyYAML~=6.0.1',
+        'wheel~=0.42.0',
+        'twine~=4.0.2',
+        'coverage==7.4.4'
     ],
     entry_points={
         'console_scripts': [
