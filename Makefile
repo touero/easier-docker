@@ -1,6 +1,8 @@
-.PHONY: test clean all
+.PHONY: test clean build all
 
-all: test clean
+TWINE_UPLOAD := twine upload --repository pypi --username __token__ --password $(TWINE_API_TOKEN)
+
+all: clean build
 
 test:
 	coverage run -m unittest discover
@@ -8,8 +10,20 @@ test:
 
 clean:
 	find . -name '__pycache__' -type d -exec rm -rf {} +
-	rm -rf build/*
-	rm -rf dist/*
-	rm -rf dist/*
-	rm -rf easier_docker.egg-info/*
+	rm -rf build
+	rm -rf dist
+	rm -rf easier_docker.egg-info
 	rm -rf .coverage
+
+build:
+	python setup.py sdist bdist_wheel
+
+upload:
+	@echo "Uploading the package..."
+	@if [ -z "$(TWINE_API_TOKEN)" ]; then \
+		echo "Error: TWINE_API_TOKEN is not set. Please export it as an environment variable."; \
+		exit 1; \
+	fi
+	$(TWINE_UPLOAD) dist/*
+debug:
+	@echo "TWINE_API_TOKEN = $(TWINE_API_TOKEN)"
