@@ -1,6 +1,6 @@
 import json
 import os
-from argparse import ArgumentParser, FileType
+from argparse import ArgumentParser
 
 from easierdocker.config import Config
 from easierdocker.log_re import log
