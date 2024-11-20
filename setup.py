@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='easier-docker',
-    version='2.2.3',
+    version='2.2.4',
     author='EnSong Wei',
     author_email='touer0018@gmail.com',
     description='Configure your container image information more easily in python, allowing the container in docker '
