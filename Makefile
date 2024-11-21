@@ -10,13 +10,13 @@ test:
 
 clean:
 	find . -name '__pycache__' -type d -exec rm -rf {} +
+	find . -name 'easier_docker.egg-info' -type d -exec rm -rf {} +
 	rm -rf build
 	rm -rf dist
-	rm -rf easier_docker.egg-info
 	rm -rf .coverage
 
 build:
-	python setup.py sdist bdist_wheel
+	python -m build
 
 upload:
 	@echo "Uploading the package..."
