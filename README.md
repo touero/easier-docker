@@ -6,6 +6,7 @@
 ![PyPI - License](https://img.shields.io/pypi/l/easier-docker)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/easier-docker)
 ![GitHub last commit](https://img.shields.io/github/last-commit/touero/easier-docker)
+[![Upload Package To PyPI](https://github.com/touero/easier-docker/actions/workflows/python-publish.yml/badge.svg?branch=master)](https://github.com/touero/easier-docker/actions/workflows/python-publish.yml)
 
 
 ## Repository Introduction
