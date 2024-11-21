@@ -1,5 +1,4 @@
 .gitignore
-pyproject.toml
 .idea/
 __pycache__/
 dist/
@@ -7,3 +6,4 @@ easier_docker.egg-info/
 venv/
 build/
 .coverage
+easierdocker/easier_docker.egg-info/
