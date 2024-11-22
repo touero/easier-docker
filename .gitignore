@@ -6,4 +6,5 @@ easier_docker.egg-info/
 venv/
 build/
 .coverage
+htmlcov
 easierdocker/easier_docker.egg-info/

@@ -7,6 +7,9 @@ all: clean build
 test:
 	coverage run -m unittest discover
 	coverage report
+	coverage html
+	google-chrome htmlcov/index.html
+
 
 clean:
 	find . -name '__pycache__' -type d -exec rm -rf {} +
