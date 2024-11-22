@@ -3,6 +3,7 @@
 __pycache__/
 dist/
 easier_docker.egg-info/
+example.egg-info/
 venv/
 build/
 .coverage

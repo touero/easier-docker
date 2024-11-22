@@ -17,6 +17,7 @@ clean:
 	rm -rf build
 	rm -rf dist
 	rm -rf .coverage
+	rm -rf htmlcov
 
 build:
 	python -m build
