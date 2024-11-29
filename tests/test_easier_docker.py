@@ -3,9 +3,7 @@ from unittest.mock import patch, MagicMock
 
 from src.easierdocker import EasierDocker
 from docker.errors import ImageNotFound, APIError, NotFound, DockerException
-from easierdocker import EasierDocker
-from easierdocker.exceptions import DockerConnectionError, NotFoundImageInDockerHub
-
+from src.easierdocker.exceptions import DockerConnectionError, NotFoundImageInDockerHub
 
 
 class TestEasierDocker(unittest.TestCase):
