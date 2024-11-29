@@ -12,7 +12,7 @@ license = {text = "Apache License 2.0"}
 authors = [
     {name = "EnSong Wei", email = "touer0018@gmail.com"}
 ]
-keywords = "easy,docker,python,docker sdk,python sdk"
+keywords = ["easy","docker","python","docker sdk","python sdk"]
 classifiers = [
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3.8",
