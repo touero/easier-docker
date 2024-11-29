@@ -2,10 +2,9 @@
 requires = ["setuptools>=68.2.0", "wheel>=0.42.0"]
 build-backend = "setuptools.build_meta"
 
-
 [project]
 name = "easier-docker"
-version = "2.2.5"
+version = "2.2.4"
 description = "Configure your container image information more easily in python, allowing the container in docker to execute the configured program you want to execute."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -13,21 +12,28 @@ license = {text = "Apache License 2.0"}
 authors = [
     {name = "EnSong Wei", email = "touer0018@gmail.com"}
 ]
-
+keywords = "easy,docker,python,docker sdk,python sdk"
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12"
+]
+dependencies = [
+    "docker~=7.1.0",
+    "setuptools~=68.2.0",
+    "PyYAML~=6.0.1",
+    "wheel~=0.42.0",
+    "twine~=4.0.2",
+    "coverage==7.4.4"
+]
 
 [project.urls]
 Homepage = "https://github.com/touero/easier-docker"
 "Bug Reports" = "https://github.com/touero/easier-docker/issues"
 Source = "https://github.com/touero/easier-docker"
-
-
-keywords = "easy, docker, python"
-
-
-classifiers = "License :: OSI Approved :: Apache Software License, Programming Language :: Python :: 3.8, Programming Language :: Python :: 3.9, Programming Language :: Python :: 3.10, Programming Language :: Python :: 3.11, Programming Language :: Python :: 3.12"
-
-
-dependencies = "docker~=7.1.0, setuptools~=68.2.0, PyYAML~=6.0.1, wheel~=0.42.0, twine~=4.0.2, coverage==7.4.4"
 
 [project.scripts]
 easier-docker = "easierdocker.__main__:main"
