@@ -2,9 +2,7 @@ import json
 import os
 from argparse import ArgumentParser
 
-from easierdocker.config import Config
-from easierdocker.log_re import log
-from easierdocker.easier_docker import EasierDocker
+from . import EasierDocker, log, Config
 
 
 def main():

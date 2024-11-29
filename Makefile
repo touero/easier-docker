@@ -14,6 +14,8 @@ test:
 clean:
 	find . -name '__pycache__' -type d -exec rm -rf {} +
 	find . -name 'easier_docker.egg-info' -type d -exec rm -rf {} +
+	find . -name 'example.egg-info' -type d -exec rm -rf {} +
+	rm -rf htmlcov
 	rm -rf build
 	rm -rf dist
 	rm -rf .coverage

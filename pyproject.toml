@@ -3,10 +3,6 @@ requires = ["setuptools>=68.2.0", "wheel>=0.42.0"]
 build-backend = "setuptools.build_meta"
 
 
-[tool.setuptools.packages]
-find = { where = ["easierdocker"] }
-
-
 [project]
 name = "easier-docker"
 version = "2.2.4"
