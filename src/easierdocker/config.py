@@ -1,7 +1,7 @@
 import json
 import yaml
 
-from easierdocker.log_re import log
+from . import log
 
 
 class Config:
