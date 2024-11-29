@@ -7,7 +7,7 @@ from docker.models.containers import Container
 from .exceptions import DockerConnectionError, NotFoundImageInDockerHub
 from .log_re import log
 from .constants import ContainerStatus
-from .docker_utils import check_container
+from .docker_utils import check_container_status
 
 
 class EasierDocker:
@@ -71,7 +71,7 @@ class EasierDocker:
         for container in containers:
             if self.container_name == container.name:
                 container.start()
-                if check_container(container) is ContainerStatus.EXITED:
+                if check_container_status(container) is ContainerStatus.EXITED:
                     return container
                 log(f'Container name: [{container.name}] is found locally')
                 log(f'Container id: [{container.short_id}] is found locally')
@@ -86,7 +86,7 @@ class EasierDocker:
     def __run_container(self):
         try:
             container: Container = self._client.containers.run(**self.container_config)
-            if check_container(container) is ContainerStatus.EXITED:
+            if check_container_status(container) is ContainerStatus.EXITED:
                 return
             log(f'Container name: [{container.name}] is running')
             log(f'Container id: [{container.short_id}] is running')
