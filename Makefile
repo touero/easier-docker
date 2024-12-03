@@ -1,4 +1,4 @@
-.PHONY: test clean build upload all
+.PHONY: test clean install build upload all
 
 TWINE_UPLOAD := twine upload --repository pypi --username __token__ --password $(TWINE_API_TOKEN)
 
@@ -20,6 +20,12 @@ clean:
 	rm -rf dist
 	rm -rf .coverage
 	rm -rf htmlcov
+
+install:
+	pip install -e .
+
+uninstall:
+	pip uninstall -y easier_docker
 
 build:
 	python -m build

@@ -16,3 +16,8 @@ container:
 network:
   name: bridge
   driver: bridge
+
+extra:
+  'is_remove': 1
+  'days_ago_remove': 7
+  'remove_now': 0
