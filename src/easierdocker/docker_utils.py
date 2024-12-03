@@ -8,15 +8,32 @@ from .constants import ContainerStatus
 
 
 def check_container_status(container: Container) -> ContainerStatus:
-    for _ in range(60):
+    for index in range(60):
         time.sleep(1)
-        if container.status != ContainerStatus.RUNNING.name.lower():
+        if container.status == ContainerStatus.CREATED.name.lower():
+            continue
+        if container.status != ContainerStatus.RUNNING.name.lower() and index == 0:
             container.reload()
+            continue
         elif container.status == ContainerStatus.RUNNING.name.lower():
             return ContainerStatus.RUNNING
         elif container.status == ContainerStatus.EXITED.name.lower():
             log(f'Container name: [{container.name}] is exited')
             return ContainerStatus.EXITED
+
+
+def wait_container_status(container: Container, status: ContainerStatus) -> bool:
+    for _ in range(60):
+        log(f'Waiting for container [{container.name}: {container.status}] to be {status.name.lower()}')
+        if container.status != status.name.lower():
+            time.sleep(1)
+            continue
+        break
+
+    if container.status == status.name.lower():
+        return True
+    else:
+        return False
 
 
 def check_time(target_time_str, days_ago_remove):
