@@ -25,15 +25,14 @@ Two params config please check:
 
 ## Usage
 ### Use examples in code
-[example.py](https://github.com/touero/easier-docker/blob/master/example/example.py)
+[example.py](https://github.com/touero/easier-docker/blob/master/example/example.py)  
 ```bash
 python example.py
 ```
-[docker_example.py](https://github.com/touero/easier-docker/blob/master/example/docker_example.py)
 ![code_start](/image/code_start.gif)
 
-and the docker container logs will be shown in the console.
-
+and the docker container logs will be shown in the console.  
+[docker_example.py](https://github.com/touero/easier-docker/blob/master/example/docker_example.py)  
 ![docker_logs](/image/docker_log.gif)
 
 ### Run directly from configuration file
@@ -43,5 +42,5 @@ and the docker container logs will be shown in the console.
 ```bash
 easier-docker -c config.yaml
 ```
-[config.yaml](https://github.com/touero/easier-docker/blob/master/example/config.yaml)
+[config.yaml](https://github.com/touero/easier-docker/blob/master/example/config.yaml)  
 ![file](/image/file.gif)
