@@ -1,5 +1,6 @@
 import docker
 import json
+import time
 
 from typing import Union
 from docker.errors import ImageNotFound, APIError, DockerException, NotFound
@@ -7,7 +8,7 @@ from docker.models.containers import Container
 from .exceptions import DockerConnectionError, NotFoundImageInDockerHub
 from .log_re import log
 from .constants import ContainerStatus
-from .docker_utils import check_container_status, check_time, wait_container_status
+from .docker_utils import check_container_status, check_time
 
 
 class EasierDocker:
@@ -36,6 +37,10 @@ class EasierDocker:
     @property
     def client(self):
         return self._client
+
+    @property
+    def get_container_status(self):
+        return self.client.containers.get(self.container_name).status
 
     @property
     def image_name(self):
@@ -83,7 +88,7 @@ class EasierDocker:
                         if container.status == ContainerStatus.RUNNING.name.lower():
                             log(f'Stopping container: [{container.name}]')
                             container.stop()
-                        if wait_container_status(container, ContainerStatus.EXITED):
+                        if self.__wait_container_status(ContainerStatus.EXITED):
                             log(f'Removing container: [{container.name}]')
                             container.remove()
                         return None
@@ -96,6 +101,21 @@ class EasierDocker:
                 return container
         log(f'ContainerNotFound: [{self.container_name}], it will be created')
         return None
+
+    def __wait_container_status(self, status: ContainerStatus) -> bool:
+        container_status = self.get_container_status
+        for _ in range(60):
+            container_status = self.get_container_status
+            log(f'Waiting for container [{container_status}] to be [{status.name.lower()}]')
+            if container_status != status.name.lower():
+                time.sleep(1)
+                continue
+            break
+
+        if container_status == status.name.lower():
+            return True
+        else:
+            return False
 
     def __run_container(self):
         try:

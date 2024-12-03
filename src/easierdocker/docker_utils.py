@@ -22,20 +22,6 @@ def check_container_status(container: Container) -> ContainerStatus:
             return ContainerStatus.EXITED
 
 
-def wait_container_status(container: Container, status: ContainerStatus) -> bool:
-    for _ in range(60):
-        log(f'Waiting for container [{container.name}: {container.status}] to be {status.name.lower()}')
-        if container.status != status.name.lower():
-            time.sleep(1)
-            continue
-        break
-
-    if container.status == status.name.lower():
-        return True
-    else:
-        return False
-
-
 def check_time(target_time_str, days_ago_remove):
     """
     Check if the target_time_str is within the last days_ago_remove days
