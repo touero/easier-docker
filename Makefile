@@ -1,4 +1,4 @@
-.PHONY: test clean install build upload all
+.PHONY: test clean install uninstall build upload all
 
 TWINE_UPLOAD := twine upload --repository pypi --username __token__ --password $(TWINE_API_TOKEN)
 
