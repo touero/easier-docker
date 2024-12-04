@@ -1,5 +1,6 @@
 import docker
 import json
+import time
 
 from typing import Union
 from docker.errors import ImageNotFound, APIError, DockerException, NotFound
@@ -7,16 +8,14 @@ from docker.models.containers import Container
 from .exceptions import DockerConnectionError, NotFoundImageInDockerHub
 from .log_re import log
 from .constants import ContainerStatus
-from .docker_utils import check_container
+from .docker_utils import check_container_status, check_time
 
 
 class EasierDocker:
-    def __init__(self, container_config: dict, network_config=None):
-        if network_config is None:
-            network_config = {}
-
-        self._container_config = container_config
-        self._network_config = network_config
+    def __init__(self, container_config: dict, **kwargs):
+        self._container_config: dict = container_config
+        self._network_config: dict = kwargs.get('network_config', {})
+        self._extra_config: dict = kwargs.get('extra_config', {})
 
         try:
             self._client = docker.from_env()
@@ -32,8 +31,16 @@ class EasierDocker:
         return self._network_config
 
     @property
+    def extra_config(self):
+        return self._extra_config
+
+    @property
     def client(self):
         return self._client
+
+    @property
+    def get_container_status(self):
+        return self.client.containers.get(self.container_name).status
 
     @property
     def image_name(self):
@@ -70,30 +77,55 @@ class EasierDocker:
         containers = self._client.containers.list(all=True)
         for container in containers:
             if self.container_name == container.name:
-                container.start()
-                if check_container(container) is ContainerStatus.EXITED:
-                    return container
-                log(f'Container name: [{container.name}] is found locally')
-                log(f'Container id: [{container.short_id}] is found locally')
-                ip_address = container.attrs['NetworkSettings']['IPAddress']
-                log(f'Container ip address: [{ip_address}]')
                 created_time = container.attrs['Created']
-                log(f'Successfully container continue running and be created at {created_time}')
+                log(f'Container name: [{container.name}] is found locally')
+                if self.extra_config.get('is_remove', 0):
+                    if (check_time(created_time, self.extra_config.get('days_ago_remove', 3)) or
+                            self.extra_config.get('remove_now', 0)):
+                        log(f'Container: [{container.name}] is created {self.extra_config.get("days_ago_remove", 3)} '
+                            f'days ago or remove_now is {self.extra_config.get("remove_now", 0)}, '
+                            f'it will be removed...')
+                        if container.status == ContainerStatus.RUNNING.name.lower():
+                            log(f'Stopping container: [{container.name}]')
+                            container.stop()
+                        if self.__wait_container_status(ContainerStatus.EXITED):
+                            log(f'Removing container: [{container.name}]')
+                            container.remove()
+                        return None
+                container.start()
+                ip_address = container.attrs['NetworkSettings']['IPAddress']
+                if check_container_status(container) is ContainerStatus.EXITED:
+                    return container
+                log(f'Container name: [{container.name}] is found locally, id: [{container.short_id}], '
+                    f'ip address: [{ip_address}], created time: [{created_time}]')
                 return container
         log(f'ContainerNotFound: [{self.container_name}], it will be created')
         return None
 
+    def __wait_container_status(self, status: ContainerStatus) -> bool:
+        container_status = self.get_container_status
+        for _ in range(60):
+            container_status = self.get_container_status
+            log(f'Waiting for container [{container_status}] to be [{status.name.lower()}]')
+            if container_status != status.name.lower():
+                time.sleep(1)
+                continue
+            break
+
+        if container_status == status.name.lower():
+            return True
+        else:
+            return False
+
     def __run_container(self):
         try:
             container: Container = self._client.containers.run(**self.container_config)
-            if check_container(container) is ContainerStatus.EXITED:
+            if check_container_status(container) is ContainerStatus.EXITED:
                 return
-            log(f'Container name: [{container.name}] is running')
-            log(f'Container id: [{container.short_id}] is running')
             ip_address = container.attrs['NetworkSettings']['IPAddress']
-            log(f'Container ip address: [{ip_address}]')
             created_time = container.attrs['Created']
-            log(f'Successfully container is running and be created at {created_time}')
+            log(f'Successfully container name: [{container.name}] is running, id: [{container.short_id}], '
+                f'ip address: [{ip_address}], created time: [{created_time}]')
         except Exception as e:
             if isinstance(e, APIError):
                 log(f'Error starting container: {str(e)}')
