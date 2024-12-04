@@ -20,5 +20,10 @@ if __name__ == '__main__':
         'name': 'bridge',
         'driver': 'bridge',
     }
-    easier_docker = EasierDocker(container_config, network_config)
+    extra_config = {
+        'is_remove': 1,
+        'days_ago_remove': 3,
+        'remove_now': 1
+    }
+    easier_docker = EasierDocker(container_config, network_config=network_config, extra_config=extra_config)
     easier_docker.start()

@@ -8,3 +8,5 @@ exclude build
 exclude *.egg-info
 exclude tests
 exclude .coverage
+exclude htmlcov
+exclude .venv

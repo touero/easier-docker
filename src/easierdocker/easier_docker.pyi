@@ -5,12 +5,11 @@ from docker import DockerClient
 
 
 class EasierDocker:
-    def __init__(self, container_config: dict, network_config=None) -> None:
-        if network_config is None:
-            network_config = {}
+    def __init__(self, container_config: dict, **kwargs) -> None:
+        self._container_config: dict = container_config
+        self._network_config: dict = kwargs.get('network_config', {})
+        self._extra_config: dict = kwargs.get('extra_config', {})
 
-        self._container_config = container_config
-        self._network_config = network_config
         self._client: DockerClient() = docker.from_env()
         """
             Initialize client, config, image name, container name
@@ -27,8 +26,29 @@ class EasierDocker:
     def network_config(self):
         """
             Return the network config.
-        :return:
         """
+        return self._network_config
+
+    @property
+    def extra_config(self):
+        """
+            Return the extra config.
+        """
+        return self._extra_config
+
+    @property
+    def client(self) -> DockerClient:
+        """
+            Return the client.
+        """
+        return self._client
+
+    @property
+    def get_container_status(self) -> str:
+        """
+            Return the status of the container.
+        """
+        ...
 
     @property
     def image_name(self) -> str:
@@ -44,12 +64,6 @@ class EasierDocker:
         """
         return self._container_config['name']
 
-    @property
-    def client(self) -> DockerClient:
-        """
-            Return the client.
-        """
-        return self._client
 
     def __get_image(self) -> None:
         """
@@ -64,6 +78,15 @@ class EasierDocker:
         :return: obj of the container or None
         """
         ...
+
+    def __wait_container_status(self, status: str) -> bool:
+        """
+            Wait for the container to reach a certain status.
+        :param status: str, current status of the container
+        :return: boolean.
+        """
+        ...
+
 
     def __run_container(self) -> None:
         """
