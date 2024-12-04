@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "easier-docker"
-version = "2.2.5"
+version = "2.2.6"
 description = "Configure your container image information more easily in python, allowing the container in docker to execute the configured program you want to execute."
 readme = "README.md"
 requires-python = ">=3.8"
