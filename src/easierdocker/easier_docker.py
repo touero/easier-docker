@@ -7,7 +7,7 @@ from docker.errors import ImageNotFound, APIError, DockerException, NotFound
 from docker.models.containers import Container
 from .exceptions import DockerConnectionError, NotFoundImageInDockerHub
 from .log_re import log
-from .constants import ContainerStatus
+from .constants import ContainerStatus, ExtraConfigModel
 from .docker_utils import check_container_status, check_time
 
 
@@ -16,6 +16,7 @@ class EasierDocker:
         self._container_config: dict = container_config
         self._network_config: dict = kwargs.get('network_config', {})
         self._extra_config: dict = kwargs.get('extra_config', {})
+        ExtraConfigModel.validate_dict(self._extra_config)
 
         try:
             self._client = docker.from_env()
