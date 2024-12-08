@@ -1,0 +1,67 @@
+name: Upload Package To PyPI And Create Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build package
+        run: python -m build
+
+      - name: Get previous and current tag
+        id: get_tags
+        run: |
+          CURRENT_TAG=${GITHUB_REF##*/}
+          echo "Current tag: $CURRENT_TAG"
+          
+          PREVIOUS_TAG=$(git tag --sort=-creatordate | grep -B 1 "$CURRENT_TAG" | head -n 1)
+          echo "Previous tag: $PREVIOUS_TAG"
+          
+          echo "CURRENT_TAG=$CURRENT_TAG" >> $GITHUB_ENV
+          echo "PREVIOUS_TAG=$PREVIOUS_TAG" >> $GITHUB_ENV
+
+      - name: Get git log between tags
+        id: get_git_log
+        run: |
+          git log ${{ env.PREVIOUS_TAG }}..${{ env.CURRENT_TAG }} --oneline | \
+          sed 's/^/- /' > release_notes.md
+          
+          cat release_notes.md
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            $(cat release_notes.md)
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
