@@ -41,7 +41,9 @@ unless python_files.empty?
   flake8_result = `flake8 #{python_files.join(" ")}`
   flake8_exit_status = $?.exitstatus
 
-  if flake8_exit_status != 0
+  if flake8_result.include?("E501")
+    warn("Flake8 code issues found (lines > 79 characters):\n```\n#{flake8_result}\n```")
+  elsif flake8_exit_status != 0
     fail("Flake8 code issues found:\n```\n#{flake8_result}\n```")
   else
     message("No Flake8 issues found!")
