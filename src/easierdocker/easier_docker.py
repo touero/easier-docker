@@ -1,3 +1,5 @@
+from sys import stdout
+
 import docker
 import json
 import time
@@ -154,6 +156,24 @@ class EasierDocker:
         self._client.networks.create(**self.network_config)
         log(f'Network: [{network_name}] is created')
         self._container_config['network'] = network_name
+
+    def container_execute_command(self, container_name_or_id: str, command: str) -> str:
+        """
+        :param container_name_or_id: container name or id
+        :param command: command of shell type
+        :return:
+        """
+        if container_name_or_id:
+            container_find = container_name_or_id
+        else:
+            container_find = self.container_name
+        log(f'Executing command: [{command}] in container: [{container_find}]')
+        container = self.client.containers.get(container_find)
+        command_result = container.exec_run(command)
+        exit_code = command_result.exit_code
+        standard_output = command_result.output.decode('utf-8')
+        log(f'Executing command result: exit_code: [{exit_code}], standard output: [{standard_output}]')
+        return f'exit_code: {exit_code}, standard output: {standard_output}'
 
     def start(self):
         self.__get_image()
