@@ -1,5 +1,3 @@
-from sys import stdout
-
 import docker
 import json
 import time
