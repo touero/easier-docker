@@ -1,0 +1,19 @@
+
+[container]
+image = "python:3.9"
+name = "python_test"
+command = ["sh", "-c", "cd /path/to/container && python docker_example.py"]
+detach = true
+
+[container.volumes."/home/weiensong/data/repo/easier-docker/example"]
+bind = "/path/to/container"
+mode = "rw"
+
+[network]
+name = "bridge"
+driver = "bridge"
+
+[extra]
+is_remove = 1
+days_ago_remove = 7
+remove_now = 0

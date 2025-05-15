@@ -1,5 +1,6 @@
 import json
 import yaml
+import toml
 
 from . import log
 
@@ -15,6 +16,8 @@ class Config:
                 config: dict = yaml.safe_load(file)
             elif self.file_path.endswith('.json'):
                 config: dict = json.load(file)
+            elif self.file_path.endswith(('.toml')):
+                config: dict = toml.load(file)
             else:
                 log(f'Currently unsupported file types: {self.file_path}')
         return config
