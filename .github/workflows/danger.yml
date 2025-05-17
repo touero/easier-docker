@@ -28,7 +28,10 @@ jobs:
           python-version: '3.10'
 
       - name: Install Python dependencies
-        run: pip install flake8
+        run: pip install flake8 pylint
+
+      - name: Run Pylint
+        run: pylint $(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }} -- '*.py') > pylint_report.txt || true
 
       - name: Run Danger
         env:
