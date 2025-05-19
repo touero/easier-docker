@@ -22,6 +22,8 @@ pip install easier-docker
 ## Usage
 Please check [wiki](https://github.com/touero/easier-docker/wiki).
 
+*Learn how to design: [DeepWiki](https://deepwiki.com/touero/easier-docker)*
+
 ## Related 
 ### Repository
 [docker-py](https://github.com/docker/docker-py) — A Python library for the Docker Engine API.
