@@ -1,3 +1,5 @@
 * [Description](description.md)  
 * [Install](/en/install.md)  
+* [Quick Start](/en/quick_start.md)
+* [Args Explain](/en/args_explain.md)
 * [Build](/en/build.md)  
