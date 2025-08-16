@@ -1,4 +1,4 @@
-.gitignore
+.vscode/
 .idea/
 __pycache__/
 dist/

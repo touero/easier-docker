@@ -20,7 +20,7 @@ pip install easier-docker
 ```
 
 ## Usage
-Please check [wiki](https://github.com/touero/easier-docker/wiki).
+Please check [document](https://touero.github.io/easier-docker/#/).
 
 *Learn how to design: [DeepWiki](https://deepwiki.com/touero/easier-docker)*
 
