@@ -1,0 +1,43 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11']
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run tests with coverage
+      run: pytest --cov=easier-docker --cov-report=xml:coverage.xml tests
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        slug: touero/easier-docker
+        file: ./coverage.xml
+        flags: py${{ matrix.python-version }}
+        name: codecov-py${{ matrix.python-version }}
+        
