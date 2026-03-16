@@ -1,17 +1,24 @@
 # Description
 
-## What is it
-This is based on docker-py which makes it easier to run your program in docker. Configure your container image information more easily in python, allowing the container in docker to execute the configured program you want to execute.No need to `docker client` in different programs.
+## What It Is
 
-## What is its advantages
-Simplifies Docker container management by providing a more intuitive interface on top of the docker-py SDK. It allows developers to configure and run programs in Docker containers with minimal settings, making containerization more friendly to Python developers.
+`easier-docker` is a small wrapper around the Docker SDK for Python. It helps you run Docker containers from Python code or from a YAML/JSON file without repeating the same client setup in each project.
 
-- Simplified container configuration: define container settings using Python dictionary or config files.
-- Automatic mirror management: automatically pull if no mirror is available locally.
-- Container Lifecycle Management: Start, stop and manage containers using simple methods.
-- Smart Cleanup: Remove old containers based on configurable policies.
-- Network Configuration: Easily set up and manage Docker networks.
+## Why Use It
 
-## Why make it
-Initially, I just wanted a quick way to spin up containers from my Python code to avoid repeatedly configuring the Docker client in different projects. Over time, the tool evolved and matured—so I decided to release it as a standalone module.
+- Less boilerplate: define container settings once and call `start()`.
+- Config-file support: use the same structure from the CLI or Python.
+- Automatic image pull: if the image is missing locally, it is pulled first.
+- Optional cleanup: replace containers with the same name using simple rules.
+- Network support: create and attach a network when needed.
 
+## Typical Workflow
+
+1. Define `container_config`.
+2. Optionally define `network_config`.
+3. Optionally define `extra_config` for cleanup behavior.
+4. Run `easier-docker -c config.yaml` or call `EasierDocker(...).start()`.
+
+## Why It Exists
+
+The project was created to make Docker-backed Python workflows easier to reuse across multiple programs. Instead of wiring Docker client calls in each codebase, you can keep the runtime settings in one place and let `easier-docker` handle image lookup, network creation, and container startup.
