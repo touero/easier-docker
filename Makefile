@@ -1,14 +1,17 @@
-.PHONY: test clean install uninstall build upload all
+.PHONY: test coverage coverage-html clean install uninstall build upload all
 
 TWINE_UPLOAD := twine upload --repository pypi --username __token__ --password $(TWINE_API_TOKEN)
+PYTEST := .venv/bin/pytest
 
 all: clean build
 
 test:
-	coverage run -m unittest discover
-	coverage report
-	coverage html
-	google-chrome htmlcov/index.html
+	$(PYTEST) --cov=src/easierdocker --cov-branch --cov-report=term-missing tests
+
+coverage: test
+
+coverage-html:
+	$(PYTEST) --cov=src/easierdocker --cov-branch --cov-report=html tests
 
 
 clean:

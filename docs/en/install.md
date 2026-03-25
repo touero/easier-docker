@@ -1,21 +1,37 @@
 # Install
 
-## Via pip (Recommended)
+## Requirements
+
+- Python 3.8 or newer
+- Docker installed on the host
+- Access to a running Docker daemon
+
+If Docker is installed but the daemon is unavailable, the package raises `DockerConnectionError` during initialization.
+
+## Install From PyPI
+
 ```shell
 pip install easier-docker
 ```
 
-## From Source
+## Install From Source
+
 ```shell
-# Clone the repository
 git clone https://github.com/touero/easier-docker.git
 cd easier-docker
-
-# Install the package
 pip install -e .
 ```
 
-## Verifying Installation In Terminal
+## Verify Installation
+
+Check the CLI:
+
 ```shell
-easier-docker --version
+easier-docker --help
+```
+
+Check the Python import:
+
+```shell
+python -c "from easierdocker import EasierDocker; print(EasierDocker.__name__)"
 ```
