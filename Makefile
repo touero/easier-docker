@@ -1,7 +1,8 @@
 .PHONY: test coverage coverage-html clean install uninstall build upload all
 
-TWINE_UPLOAD := twine upload --repository pypi --username __token__ --password $(TWINE_API_TOKEN)
-PYTEST := .venv/bin/pytest
+UV := uv
+TWINE_UPLOAD := $(UV) run twine upload --repository pypi --username __token__ --password $(TWINE_API_TOKEN)
+PYTEST := $(UV) run pytest
 
 all: clean build
 
@@ -25,13 +26,13 @@ clean:
 	rm -rf htmlcov
 
 install:
-	pip install -e .
+	$(UV) sync --extra dev
 
 uninstall:
-	pip uninstall -y easier_docker
+	$(UV) pip uninstall -y easier-docker
 
 build:
-	python -m build
+	$(UV) run python -m build
 
 upload:
 	@echo "Uploading the package..."

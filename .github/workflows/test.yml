@@ -28,11 +28,16 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Sync dependencies
+      run: uv sync --extra dev
 
     - name: Run tests with coverage
-      run: pytest --cov=easier-docker --cov-report=xml:coverage.xml tests
+      run: uv run pytest --cov=src/easierdocker --cov-branch --cov-report=xml:coverage.xml tests
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4

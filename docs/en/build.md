@@ -1,23 +1,48 @@
-# Build
+# Development
 
-## Local Build
+## Tooling
 
-The repository includes a [Makefile](https://github.com/touero/easier-docker/blob/master/Makefile) for common build steps.
+- [uv](https://docs.astral.sh/uv/) for environment and dependency management
+- Python 3.8 or newer
+
+## Create Virtual Environment
 
 ```shell
-make
+uv venv
 ```
 
-## Development Install
+Use a specific Python version if needed:
 
 ```shell
-pip install -e .[dev]
+uv venv --python 3.11
+```
+
+## Sync Dependencies
+
+```shell
+uv sync --extra dev
 ```
 
 ## Run Tests
 
 ```shell
-pytest
+uv run pytest
+```
+
+## Build Package
+
+```shell
+uv run python -m build
+```
+
+## Makefile Shortcuts
+
+The repository includes a [Makefile](https://github.com/touero/easier-docker/blob/master/Makefile) for common tasks:
+
+```shell
+make install
+make test
+make build
 ```
 
 ## Contributing
